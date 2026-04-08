@@ -7,9 +7,9 @@ from joblib import Parallel, delayed
 from tqdm import tqdm
 from scipy.integrate import quad
 
-IC_df = pd.read_csv('Start_pop_1.csv',
+IC_df = pd.read_csv('data/Start_pop.csv',
                     skiprows=15, header=None, dtype=np.float64)
-init = pd.read_csv('Start_pop_1.csv',
+init = pd.read_csv('data/Start_pop.csv',
                    header=None, dtype=np.float64)
 init.iloc[15] = init.iloc[15:].sum(axis=0)
 init_cond = init.iloc[:16]
@@ -26,7 +26,7 @@ death_risk = [0.00148776, 0.00104143, 0.01413369, 0.00773634, 0.00892654, 0.0187
             0.01740676, 0.01874574, 0.02796984, 0.03109413, 0.04745945, 0.08450461,
             0.14565143, 0.13702244, 0.24592627, 0.33712578, 0.38964361, 0.51699563,
             0.86007244, 1, 1]
-beta = pd.read_csv('UK_Risks_1.csv')['susceptibility'].tolist()
+beta = pd.read_csv('data/UK_Risks.csv')['susceptibility'].tolist()
 # -------------------------------------------------------------
 # Calculate gamma distributions for hospitalisation and death
 mean_h = 0.00001
@@ -41,9 +41,9 @@ deltaIH /= np.sum(deltaIH)
 deltaHD = gamma.pdf(np.arange(1, 31), a=shape_d, scale=scale_d)
 deltaHD /= np.sum(deltaHD)
 # -------------------------------------------------------------
-M = pd.read_csv('UK_Contacts_1.csv', header=None)
+M = pd.read_csv('data/UK_Contacts.csv', header=None)
 M_list = [M.iloc[i,:].tolist() for i in range(16)]
-d = pd.read_csv('UK_Risks_1.csv')['symptom_risk'].tolist()
+d = pd.read_csv('data/UK_Risks.csv')['symptom_risk'].tolist()
 d = np.array(d[:15] + [np.sum(np.multiply(d[15:], frac_pop_over75))])
 
 def l_k(k, shape, scale):
