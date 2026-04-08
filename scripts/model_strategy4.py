@@ -221,16 +221,17 @@ def boost_people(current_time, status, boosted, boost_time, to_boost_time, dead,
         to_boost_indices = pop[to_boost]
     # Select up to num_boost individuals from to_boost_indices
     selected_indices = to_boost_indices[:num_boost]
+    # print(vaccine[selected_indices], "people boosted at time", current_time)
     boost_time[selected_indices] = current_time
     boosted[selected_indices] = True
 
 def filter_population(age_group):
-    # sort the population by descending age group and choose 80% of each age group
+    # sort the population by increasing age group and choose 80% of each age group
     age_groups = np.arange(16)
     age_group_counts = np.bincount(age_group, minlength=16)
     filtered_population = []
     over_50 = 0
-    for age in age_groups[::-1]:
+    for age in age_groups:
         count = int(age_group_counts[age] * 0.8)
         over_50 += count if age >= 10 else 0
         indices = np.where(age_group == age)[0]
@@ -381,8 +382,8 @@ for delay in np.linspace(0, 180, 181, dtype=int):
 
 # Save the results to a CSV file
     df = pd.DataFrame(inf)
-    df.to_csv(f'infections_s3_{delay}.csv', header=None, index=False)
+    df.to_csv(f'infections_s4_{delay}.csv', header=None, index=False)
     df = pd.DataFrame(death)
-    df.to_csv(f'deaths_s3_{delay}.csv', header=None, index=False)
+    df.to_csv(f'deaths_s4_{delay}.csv', header=None, index=False)
     age_deaths_df = pd.DataFrame(avg_age_deaths)
-    age_deaths_df.to_csv(f'age_deaths_s3_{delay}.csv', header=None, index=False)
+    age_deaths_df.to_csv(f'age_deaths_s4_{delay}.csv', header=None, index=False)
