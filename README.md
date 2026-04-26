@@ -26,6 +26,6 @@ To reproduce the figures, run the following scripts:
 - Figure S5:
 - Figure S6:
 
-Note that all dependencies are specified in the requirements.txt file.
+Note that all dependencies are specified in the `requirements.txt` file.
 
-Reproduced figures will be saved into the Figures directory.
+Reproduced figures will be saved into the `Figures` directory.
