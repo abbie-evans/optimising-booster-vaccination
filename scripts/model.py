@@ -254,6 +254,7 @@ def run(delay, sim_num=0):
     new_death = []
     age_death = []
     new_infect = []
+    new_hosp = []
     pop = filter_population(age_group)
     for t in range(365):
         if t == 0:
@@ -311,36 +312,41 @@ def run(delay, sim_num=0):
         entry_time[symptomatic_indices[symptomatic_to_susceptible]] = t
         entry_time[asymptomatic_indices[asymptomatic_to_susceptible]] = t
 
-        death = (death_entry  == t)
+        death = (death_entry == t)
+        hosp = (hospital_entry == t)
         # count number of deaths
         num_deaths = death.sum()
+        num_hosps = hosp.sum()
         # count number of deaths in each age group
         age_groups = np.arange(16)
         age_group_deaths = np.zeros(16, dtype=int)
         for age in age_groups:
             age_group_deaths[age] = np.sum(death[age_group == age])
         new_death.append(num_deaths)
+        new_hosp.append(num_hosps)
         dead[death] = True
         age_death.append(age_group_deaths)
         status[death] = 0 # Move out of infectious status
 
         boost_people(t, status, boosted, boost_time, to_boost_time, dead, pop)
 
-    return new_infect, new_death, age_death
+    return new_infect, new_death, age_death, new_hosp
 
 protect_infection = protection_from_infection(multiplier=2) # Set value of sigma
 risk_of_hospitalisation = calc_risk_of_hospitalisation(multiplier=2) # Set value of sigma
 death = []
 avg_age_deaths = []
 inf = []
+hosp = []
 for delay in np.arange(0, 181, 180, dtype=int):
     print(f"Running simulation with delay {delay}...")
     # Run the simulation with the specified delay
     all_results = Parallel(n_jobs=-1)(delayed(run)(delay, _) for _ in tqdm(range(100)))
-    all_infect, all_deaths, all_age_deaths = zip(*all_results)
+    all_infect, all_deaths, all_age_deaths, all_hosps = zip(*all_results)
     death.append(np.mean(all_deaths, axis=0))
     avg_age_deaths.append(np.mean(all_age_deaths, axis=0))
     inf.append(np.mean(all_infect, axis=0))
+    hosp.append(np.mean(all_hosps, axis=0))
 
 # Save the results to a CSV file
 print(np.sum(death))
@@ -348,5 +354,7 @@ inf_df = pd.DataFrame(inf)
 inf_df.to_csv(f'infections.csv', header=None, index=False)
 df = pd.DataFrame(death)
 df.to_csv(f'deaths.csv', header=None, index=False)
+df = pd.DataFrame(hosp)
+df.to_csv(f'hospitalisations.csv', header=None, index=False)
 age_deaths_df = pd.DataFrame(avg_age_deaths)
 age_deaths_df.to_csv(f'age_deaths.csv', header=None, index=False)
