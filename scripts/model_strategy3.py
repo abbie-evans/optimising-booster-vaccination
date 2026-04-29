@@ -282,6 +282,7 @@ def run(delay, old_start, sim_num=0):
     new_death = []
     age_death = []
     new_infect = []
+    new_hosp = []
     pop, over_50 = filter_population(age_group)
     vaccine[pop[:over_50]] = 0 # Set the first x people in the population to get the existing vaccine
     to_boost_time[pop[:over_50]] = old_start # Set the boost time for the first x people to the old start time
@@ -347,21 +348,24 @@ def run(delay, old_start, sim_num=0):
         entry_time[asymptomatic_indices[asymptomatic_to_susceptible]] = t
         
         death = (death_entry == t)
+        hosp = (hospital_entry == t)
         # count number of deaths
         num_deaths = death.sum()
+        num_hosps = hosp.sum()
         # count number of deaths in each age group
         age_groups = np.arange(16)
         age_group_deaths = np.zeros(16, dtype=int)
         for age in age_groups:
             age_group_deaths[age] = np.sum(death[age_group == age])
         new_death.append(num_deaths)
+        new_hosp.append(num_hosps)
         dead[death] = True
         age_death.append(age_group_deaths)
         status[death] = 0 # Move out of infectious status
 
         boost_people(t, status, boosted, boost_time, to_boost_time, dead, pop, vaccine)
 
-    return new_infect, new_death, age_death
+    return new_infect, new_death, age_death, new_hosp
 
 protect_infection = protection_from_infection(multiplier=2) # Set value of sigma
 risk_of_hospitalisation = calc_risk_of_hospitalisation(multiplier=2) # Set value of sigma
@@ -370,14 +374,16 @@ for delay in np.linspace(0, 180, 181, dtype=int):
     inf = []
     death = []
     avg_age_deaths = []
+    hosp = []
     for old_start in range(0, delay + 1):
     # Run the simulation with the specified delay
         all_results = Parallel(n_jobs=-1)(delayed(run)(delay, old_start, _) for _ in tqdm(range(100)))
-        all_infect, all_deaths, all_age_deaths = zip(*all_results)
+        all_infect, all_deaths, all_age_deaths, all_hosps = zip(*all_results)
         death.append(np.mean(all_deaths, axis=0))
         age_deaths = np.mean(all_age_deaths, axis=0)
         avg_age_deaths.append(age_deaths.sum(axis=0))
         inf.append(np.mean(all_infect, axis=0))
+        hosp.append(np.mean(all_hosps, axis=0))
 
 # Save the results to a CSV file
     df = pd.DataFrame(inf)
@@ -386,3 +392,5 @@ for delay in np.linspace(0, 180, 181, dtype=int):
     df.to_csv(f'deaths_s3_{delay}.csv', header=None, index=False)
     age_deaths_df = pd.DataFrame(avg_age_deaths)
     age_deaths_df.to_csv(f'age_deaths_s3_{delay}.csv', header=None, index=False)
+    df = pd.DataFrame(hosp)
+    df.to_csv(f'hospitalisations_s3_{delay}.csv', header=None, index=False)
