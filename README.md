@@ -8,9 +8,10 @@ Data and Python code accompanying Evans et al., "Optimising booster vaccination 
 - `model_init_infect_50` and `model_init_infect_200` simulate booster vaccination as above, but with lower or higher numbers of initially infected individuals.
 - `model_strategy3.py` \
   Simulates booster vaccination with the existing vaccine deploying $y$ doses. When the variant-adapted vaccine becomes available, vaccinate the remaining 80,000 - $y$ of the vaccine-willing population (based on the assumed vaccine uptake of 80%).
-
 - `model_strategy4.py` \
   Simulates booster vaccination with the existing vaccine deploying $y$ doses in increasing age order (starting with individuals aged 0-4, then 5-9, and so on). When the variant-adapted vaccine becomes available, vaccinate the remaining 80,000 - $y$ of the vaccine-willing population (based on the assumed vaccine uptake of 80%).
+- `two_dose_existing_vacc.py` \
+  Simulates booster vaccination with two doses of the existing vaccine. The second vaccine dose is only deployed once all vaccine-willing individuals have had the first booster dose.
 
 ### Plotting
 
@@ -24,9 +25,9 @@ To reproduce the figures, run the following scripts:
 - Figure S2: `diff_init_infect_heatmap.py`
 - Figure S3: `vaccine_efficacy_delay_heatmap.py`
 - Figure S4: `alt_strategies.py`
-- Figure S5:
+- Figure S5: `two_doses_heatmap.py`
 - Figure S6: `contact_matrix.py`
 
 Note that all dependencies are specified in the `requirements.txt` file.
 
-Reproduced figures will be saved into the `Figures` directory.
+Reproduced figures will be saved into the `figures` directory.
