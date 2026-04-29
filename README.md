@@ -18,11 +18,11 @@ To reproduce the figures, run the following scripts:
 - Figure 1:
 - Figure 2:
 - Figure 3: `vaccine_efficacy_delay_heatmap.py`
-- Figure 4:
+- Figure 4: `alt_strategies.py`
 - Figure S1:
 - Figure S2:
 - Figure S3: `vaccine_efficacy_delay_heatmap.py`
-- Figure S4:
+- Figure S4: `alt_strategies.py`
 - Figure S5:
 - Figure S6:
 
