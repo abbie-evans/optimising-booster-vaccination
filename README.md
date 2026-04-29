@@ -5,6 +5,7 @@ Data and Python code accompanying Evans et al., "Optimising booster vaccination 
 ### Data generation
 - `model.py` \
   Simulates booster vaccination with either the deployment of an existing vaccine (with `multiplier=1`) available from the beginning of the simulation or the deployment of a variant-adapted vaccine (with `multiplier>1`) when it becomes available, where `multiplier` represents the relative vaccine efficacy within the code. Both of these vaccines are deployed in decreasing age order (starting with individuals aged 75+, then 70-74, and so on).
+- `model_init_infect_50` and `model_init_infect_200` simulate booster vaccination as above, but with lower or higher numbers of initially infected individuals.
 - `model_strategy3.py` \
   Simulates booster vaccination with the existing vaccine deploying $y$ doses. When the variant-adapted vaccine becomes available, vaccinate the remaining 80,000 - $y$ of the vaccine-willing population (based on the assumed vaccine uptake of 80%).
 
