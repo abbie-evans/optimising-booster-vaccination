@@ -17,7 +17,7 @@ Data and Python code accompanying Evans et al., "Optimising booster vaccination 
 
 To reproduce the figures, run the following scripts:
 
-- Figure 1:
+- Figure 1: `immunological_model.py`
 - Figure 2:
 - Figure 3: `vaccine_efficacy_delay_heatmap.py`
 - Figure 4: `alt_strategies.py`
