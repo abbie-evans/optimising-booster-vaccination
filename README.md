@@ -21,7 +21,7 @@ To reproduce the figures, run the following scripts:
 - Figure 3: `vaccine_efficacy_delay_heatmap.py`
 - Figure 4: `alt_strategies.py`
 - Figure S1:
-- Figure S2: `diff_init_infect_heatmap`
+- Figure S2: `diff_init_infect_heatmap.py`
 - Figure S3: `vaccine_efficacy_delay_heatmap.py`
 - Figure S4: `alt_strategies.py`
 - Figure S5:
