@@ -25,7 +25,7 @@ To reproduce the figures, run the following scripts:
 - Figure S3: `vaccine_efficacy_delay_heatmap.py`
 - Figure S4: `alt_strategies.py`
 - Figure S5:
-- Figure S6:
+- Figure S6: `contact_matrix.py`
 
 Note that all dependencies are specified in the `requirements.txt` file.
 
