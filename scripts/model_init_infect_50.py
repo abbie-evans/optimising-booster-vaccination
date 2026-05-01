@@ -338,7 +338,7 @@ death = []
 avg_age_deaths = []
 inf = []
 hosp = []
-for delay in np.arange(0, 181, 180, dtype=int):
+for delay in np.linspace(0, 181, 180, dtype=int):
     print(f"Running simulation with delay {delay}...")
     # Run the simulation with the specified delay
     all_results = Parallel(n_jobs=-1)(delayed(run)(delay, _) for _ in tqdm(range(100)))
