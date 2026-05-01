@@ -358,7 +358,7 @@ def run(delay, second_delay, sim_num=0):
 
 protect_infection = protection_from_infection(multiplier=1)
 risk_of_hospitalisation = calc_risk_of_hospitalisation(multiplier=1)
-for delay in np.arange(0, 181, 180, dtype=int):
+for delay in np.linspace(0, 181, 180, dtype=int):
     death = []
     avg_age_deaths = []
     inf = []
