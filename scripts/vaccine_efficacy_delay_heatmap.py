@@ -8,7 +8,7 @@ import pandas as pd
 
 delay_deaths = []
 for multiplier in [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5]:
-    deaths = pd.read_csv(f'data/re3/deaths_{multiplier}.csv', header=None, dtype=float)
+    deaths = pd.read_csv(f'data/re1.5/deaths_{multiplier}.csv', header=None, dtype=float)
     delay_deaths.append(list(deaths.sum(axis=1)))
 
 d = np.array(delay_deaths[::-1])
@@ -45,7 +45,7 @@ plt.xticks(rotation=0)
 plt.ylabel('Start of booster vaccination (days)', labelpad=10, fontsize=20)
 plt.xlabel(r'Vaccine efficacy ($\sigma$)', labelpad=10, fontsize=20)
 plt.tight_layout()
-# plt.savefig("figures/re3_deaths.svg", bbox_inches="tight")
+plt.savefig("figures/re1.5_deaths.svg", bbox_inches="tight")
 plt.show()
 
 # ---------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ plt.xticks(rotation=0)
 plt.ylabel('Start of booster vaccination (days)', labelpad=10, fontsize=20)
 plt.xlabel(r'Vaccine efficacy ($\sigma$)', labelpad=10, fontsize=20)
 plt.tight_layout()
-# plt.savefig("figures/re1.5_yll.svg", bbox_inches="tight")
+plt.savefig("figures/re1.5_yll.svg", bbox_inches="tight")
 plt.show()
 
 # ---------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ plt.show()
 
 delay_hosps = []
 for multiplier in [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5]:
-    deaths = pd.read_csv(f'data/re3/hosp_{multiplier}.csv', header=None, dtype=float)
+    deaths = pd.read_csv(f'data/re1.5/hosp_{multiplier}.csv', header=None, dtype=float)
     delay_hosps.append(list(deaths.sum(axis=1)))
 
 h = np.array(delay_hosps[::-1])
@@ -143,7 +143,7 @@ plt.xticks(rotation=0)
 plt.ylabel('Start of booster vaccination (days)', labelpad=10, fontsize=20)
 plt.xlabel(r'Vaccine efficacy ($\sigma$)', labelpad=10, fontsize=20)
 plt.tight_layout()
-# plt.savefig("figures/re3_hosps.svg", bbox_inches="tight")
+plt.savefig("figures/re1.5_hosps.svg", bbox_inches="tight")
 plt.show()
 
 # ---------------------------------------------------------------------------------------
@@ -151,7 +151,7 @@ plt.show()
 
 delay_inf = []
 for multiplier in [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5]:
-    deaths = pd.read_csv(f'data/re3/infections_{multiplier}.csv', header=None, dtype=float)
+    deaths = pd.read_csv(f'data/re1.5/infections_{multiplier}.csv', header=None, dtype=float)
     delay_inf.append(list(deaths.sum(axis=1)))
 
 i = np.array(delay_inf[::-1])
@@ -188,5 +188,5 @@ plt.xticks(rotation=0)
 plt.ylabel('Start of booster vaccination (days)', labelpad=10, fontsize=20)
 plt.xlabel(r'Vaccine efficacy ($\sigma$)', labelpad=10, fontsize=20)
 plt.tight_layout()
-# plt.savefig("figures/re3_infs.svg", bbox_inches="tight")
+plt.savefig("figures/re1.5_infs.svg", bbox_inches="tight")
 plt.show()
