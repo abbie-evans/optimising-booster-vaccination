@@ -14,13 +14,15 @@ Data and Python code accompanying Evans et al., "Optimising booster vaccination 
   Simulates booster vaccination with two doses of the existing vaccine. The second vaccine dose is only deployed once all vaccine-willing individuals have had the first booster dose.
 - `optim_timing.py` \
   Simulates booster vaccination as in `model.py`, but for varying values of the effective reproduction number, $R_e$.
+- `vacc_deployment_timing.py` \
+  Simulates booster vaccination as in `model.py`, but for specific `delay` values to illustrate the effect of delaying vaccine deployment on the number of infections and deaths.
 
 ### Plotting
 
 To reproduce the figures, run the following scripts:
 
 - Figure 1: `immunological_model.py`
-- Figure 2:
+- Figure 2: `diff_deploy_times.py`
 - Figure 3: `vaccine_efficacy_delay_heatmap.py`
 - Figure 4: `alt_strategies.py`
 - Figure S1: `re_ve_heatmap.py`
