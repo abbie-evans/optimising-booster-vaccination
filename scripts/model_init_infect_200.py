@@ -332,8 +332,9 @@ def run(delay, sim_num=0):
 
     return new_infect, new_death, age_death, new_hosp
 
-protect_infection = protection_from_infection(multiplier=2) # Set value of sigma
-risk_of_hospitalisation = calc_risk_of_hospitalisation(multiplier=2) # Set value of sigma
+multiplier = 2 # Set value of sigma
+protect_infection = protection_from_infection(multiplier)
+risk_of_hospitalisation = calc_risk_of_hospitalisation(multiplier)
 death = []
 avg_age_deaths = []
 inf = []
@@ -352,10 +353,10 @@ for delay in np.linspace(0, 181, 180, dtype=int):
 # Save the results to a CSV file
 print(np.sum(death))
 inf_df = pd.DataFrame(inf)
-inf_df.to_csv(f'infections.csv', header=None, index=False)
+inf_df.to_csv(f'data/re1.5/200/infections_{multiplier}.csv', header=None, index=False)
 df = pd.DataFrame(death)
-df.to_csv(f'deaths.csv', header=None, index=False)
+df.to_csv(f'data/re1.5/200/deaths_{multiplier}.csv', header=None, index=False)
 df = pd.DataFrame(hosp)
-df.to_csv(f'hospitalisations.csv', header=None, index=False)
+df.to_csv(f'data/re1.5/200/hospitalisations_{multiplier}.csv', header=None, index=False)
 age_deaths_df = pd.DataFrame(avg_age_deaths)
-age_deaths_df.to_csv(f'age_deaths.csv', header=None, index=False)
+age_deaths_df.to_csv(f'data/re1.5/200/age_deaths_{multiplier}.csv', header=None, index=False)
