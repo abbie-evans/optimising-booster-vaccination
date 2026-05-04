@@ -388,10 +388,10 @@ for delay in np.linspace(0, 180, 181, dtype=int):
 
 # Save the results to a CSV file
     df = pd.DataFrame(inf)
-    df.to_csv(f'infections_s4_{delay}.csv', header=None, index=False)
+    df.to_csv(f'data/s4/re1.5/infections_{delay}.csv', header=None, index=False)
     df = pd.DataFrame(death)
-    df.to_csv(f'deaths_s4_{delay}.csv', header=None, index=False)
+    df.to_csv(f'data/s4/re1.5/deaths_{delay}.csv', header=None, index=False)
     age_deaths_df = pd.DataFrame(avg_age_deaths)
-    age_deaths_df.to_csv(f'age_deaths_s4_{delay}.csv', header=None, index=False)
+    age_deaths_df.to_csv(f'data/s4/re1.5/age_deaths_{delay}.csv', header=None, index=False)
     df = pd.DataFrame(hosp)
-    df.to_csv(f'hospitalisations_s4_{delay}.csv', header=None, index=False)
+    df.to_csv(f'data/s4/re1.5/hospitalisations_{delay}.csv', header=None, index=False)
