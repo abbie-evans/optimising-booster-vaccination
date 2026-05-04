@@ -339,7 +339,7 @@ death = []
 avg_age_deaths = []
 inf = []
 hosp = []
-for re in np.arange(1.5, 3, 0.1):
+for re in np.arange(1.5, 3.1, 0.1):
     for delay in np.linspace(0, 181, 180, dtype=int):
         print(f"Running simulation with delay {delay}...")
         # Run the simulation with the specified delay
