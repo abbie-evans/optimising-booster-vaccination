@@ -6,6 +6,7 @@ import random
 from joblib import Parallel, delayed
 from tqdm import tqdm
 from scipy.integrate import quad
+import os
 
 IC_df = pd.read_csv('data/Start_pop.csv',
                     skiprows=15, header=None, dtype=np.float64)
@@ -331,6 +332,8 @@ def run(delay, sim_num=0):
         boost_people(t, status, boosted, boost_time, to_boost_time, dead, pop)
 
     return new_infect, new_death, age_death, new_hosp
+
+os.makedirs(f'data/re1.5', exist_ok=True)
 
 multiplier = 2 # Set value of sigma
 protect_infection = protection_from_infection(multiplier)
