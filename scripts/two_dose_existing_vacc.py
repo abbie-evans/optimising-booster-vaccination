@@ -5,6 +5,7 @@ import random
 from joblib import Parallel, delayed
 from tqdm import tqdm
 from scipy.integrate import quad
+import os
 
 IC_df = pd.read_csv('data/Start_pop.csv',
                     skiprows=15, header=None, dtype=np.float64)
@@ -355,6 +356,8 @@ def run(delay, second_delay, sim_num=0):
             all_second_dose = True
 
     return new_infect, new_death, age_death, new_hosp
+
+os.makedirs(f'data/two_doses', exist_ok=True)
 
 protect_infection = protection_from_infection(multiplier=1)
 risk_of_hospitalisation = calc_risk_of_hospitalisation(multiplier=1)
