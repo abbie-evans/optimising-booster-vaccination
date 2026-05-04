@@ -6,6 +6,7 @@ import random
 from joblib import Parallel, delayed
 from tqdm import tqdm
 from scipy.integrate import quad
+import os
 
 IC_df = pd.read_csv('data/Start_pop.csv',
                     skiprows=15, header=None, dtype=np.float64)
@@ -333,6 +334,8 @@ def run(delay, re, sim_num=0):
     return new_infect, new_death, age_death
 
 multiplier = 2 # Set value of sigma
+os.makedirs(f'data/optim_timing/{multiplier}', exist_ok=True)
+
 protect_infection = protection_from_infection(multiplier)
 risk_of_hospitalisation = calc_risk_of_hospitalisation(multiplier)
 death = []
