@@ -344,7 +344,8 @@ for delay in np.linspace(0, 181, 180, dtype=int):
     all_results = Parallel(n_jobs=-1)(delayed(run)(delay, _) for _ in tqdm(range(100)))
     all_infect, all_deaths, all_age_deaths, all_hosps = zip(*all_results)
     death.append(np.mean(all_deaths, axis=0))
-    avg_age_deaths.append(np.mean(all_age_deaths, axis=0))
+    age_deaths = np.mean(all_age_deaths, axis=0)
+    avg_age_deaths.append(age_deaths.sum(axis=0))
     inf.append(np.mean(all_infect, axis=0))
     hosp.append(np.mean(all_hosps, axis=0))
 
