@@ -12,6 +12,8 @@ Data and Python code accompanying Evans et al., "Optimising booster vaccination 
   Simulates booster vaccination with the existing vaccine deploying $y$ doses in increasing age order (starting with individuals aged 0-4, then 5-9, and so on). When the variant-adapted vaccine becomes available, vaccinate the remaining 80,000 - $y$ of the vaccine-willing population (based on the assumed vaccine uptake of 80%).
 - `two_dose_existing_vacc.py` \
   Simulates booster vaccination with two doses of the existing vaccine. The second vaccine dose is only deployed once all vaccine-willing individuals have had the first booster dose.
+- `optim_timing.py` \
+  Simulates booster vaccination as in `model.py`, but for varying values of the effective reproduction number, $R_e$.
 
 ### Plotting
 
@@ -21,7 +23,7 @@ To reproduce the figures, run the following scripts:
 - Figure 2:
 - Figure 3: `vaccine_efficacy_delay_heatmap.py`
 - Figure 4: `alt_strategies.py`
-- Figure S1:
+- Figure S1: `re_ve_heatmap.py`
 - Figure S2: `diff_init_infect_heatmap.py`
 - Figure S3: `vaccine_efficacy_delay_heatmap.py`
 - Figure S4: `alt_strategies.py`
