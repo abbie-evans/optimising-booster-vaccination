@@ -191,7 +191,7 @@ def calculate_force_of_infection(init_susc, age_group, status):
     R = np.zeros((16, 16))
     for i in range(16):
         for j in range(16):
-            R[i, j] = (parameters['beta'][j]*parameters['omega']*M_list[i, j]*init_susc[i]*9)*(tau*(1-d[j]) + d[j])
+            R[i, j] = (parameters['beta'][i]*parameters['omega']*M_list[i, j]*init_susc[i]*9)*(tau*(1-d[j]) + d[j])
     eigenvalues = np.linalg.eigvals(R)
     R0 = np.real(max(eigenvalues))
     beta_new = 1.5/R0*parameters['beta'] # Set Re
@@ -208,7 +208,7 @@ def boost_people(current_time, status, boosted, boost_time, to_boost_time, dead,
     to_boost = ((status[pop] == 0) | (status[pop] == 1)) & (~boosted[pop]) & (~dead[pop]) & (to_boost_time[pop] <= current_time)
     # Select individuals to boost based on the number of boosts available
     num_boost = parameters["num_boost"]
-    # if we can vaccination with vaccine=0 and vaccine=1 at the same time (old and new), prioritise the new vaccine (vaccine=1)
+    # if we can vaccinate with vaccine=0 and vaccine=1 at the same time (old and new), prioritise the new vaccine (vaccine=1)
     # if in to_boost list, there are individuals with vaccine=1, boost them first
     to_boost_indices = pop[to_boost]
     if vaccine[to_boost_indices].sum() > 0:
